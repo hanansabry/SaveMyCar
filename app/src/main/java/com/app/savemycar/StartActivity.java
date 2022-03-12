@@ -1,7 +1,15 @@
 package com.app.savemycar;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.app.savemycar.presentation.admin.AdminHomeActivity;
+import com.app.savemycar.presentation.admin.LoginActivity;
+import com.app.savemycar.presentation.client.ClientHomeActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -9,5 +17,16 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.btnClient)
+    public void onClientClicked() {
+        startActivity(new Intent(this, ClientHomeActivity.class));
+    }
+
+    @OnClick(R.id.btnAdmin)
+    public void onAdminClicked() {
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }

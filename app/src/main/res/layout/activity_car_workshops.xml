@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentTop="true"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".presentation.admin.IssuesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_white"
+            android:tint="@color/white"
+            android:foreground="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/alata"
+            android:gravity="center"
+            android:text="Car Workshops"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/alata"
+            android:text="Select category:"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/brandsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="8dp"
+            android:textSize="14sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/border_spinner"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/nameTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/corner_light_gray"
+        android:gravity="bottom"
+        android:hint="Workshop Name"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/text_gray" />
+
+    <EditText
+        android:id="@+id/regionTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/corner_light_gray"
+        android:gravity="bottom"
+        android:hint="Region"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/text_gray" />
+
+    <EditText
+        android:id="@+id/addressTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/corner_light_gray"
+        android:gravity="bottom"
+        android:hint="Address"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/text_gray" />
+
+    <EditText
+        android:id="@+id/phoneTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/corner_light_gray"
+        android:gravity="bottom"
+        android:hint="Phone"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/text_gray" />
+
+    <Button
+        android:id="@+id/btnAddWorkshop"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/cornered_accent_bg_fill"
+        android:text="Add Workshop"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</LinearLayout>
+
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/addIssueFab"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_margin="16dp"-->
+    <!--        android:src="@drawable/ic_add2"-->
+    <!--        android:tint="@color/white"-->
+    <!--        app:fabSize="normal"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_alignParentEnd="true"/>-->
+

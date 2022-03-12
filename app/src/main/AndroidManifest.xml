@@ -9,14 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".presentation.client.ClientDiagnosisActivity"></activity>
+        <activity android:name=".presentation.client.CheckIssueActivity" />
+        <activity android:name=".presentation.admin.CarWorkshopsActivity" />
+        <activity android:name=".presentation.admin.DiagnosisActivity" />
+        <activity android:name=".presentation.admin.PrimaryActivity" />
+        <activity android:name=".presentation.admin.IssuesActivity" />
+        <activity android:name=".presentation.admin.LoginActivity" />
+        <activity android:name=".presentation.admin.AdminHomeActivity" />
+        <activity android:name=".presentation.client.ClientHomeActivity" />
+        <activity android:name=".StartActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_alignParentTop="true"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".presentation.admin.IssuesActivity">
+
+    <LinearLayout
+        android:id="@+id/titleBarView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_white"
+            android:tint="@color/white"
+            android:foreground="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/alata"
+            android:gravity="center"
+            android:text="Primary Details"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/issueNameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/issueNameLabelTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/alata"
+            android:text="Issue Name:"
+            android:textSize="14sp"
+            android:textColor="@color/yellow" />
+
+        <TextView
+            android:id="@+id/issueNameTextView"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/alata"
+            android:text="My Issue Name"
+            android:textSize="14sp"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/primaryNameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/primaryNameLabelTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/alata"
+            android:text="Primary Name:"
+            android:textSize="14sp"
+            android:textColor="@color/yellow" />
+
+        <TextView
+            android:id="@+id/primaryNameTextView"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/alata"
+            android:text="My Primary Name"
+            android:textSize="14sp"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addSecondaryView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/alata"
+            android:text="Add secondary:"
+            android:textColor="@color/yellow" />
+
+        <EditText
+            android:id="@+id/editTextSecondaryName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/corner_light_gray"
+            android:gravity="bottom"
+            android:hint="Type secondary here"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnAddSecondary"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="100dp"
+            android:layout_height="34dp"
+            android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:background="@drawable/cornered_accent_bg_fill"
+            android:text="Add"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lineView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+        android:background="@color/text_gray" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/secondariesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        tools:listitem="@layout/secondary_item_layout"/>
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/btnAddSecondaryFab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:src="@drawable/ic_add2"-->
+<!--        android:tint="@color/white"-->
+<!--        app:fabSize="normal"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"/>-->
+
+</LinearLayout>
+
+
+
