@@ -74,6 +74,7 @@ public class IssuesExpandingAdapter {
             addSubItemImageButton = expandingItem.findViewById(R.id.add_primary_btn);
             expandingItem.setIndicatorColorRes(R.color.colorAccent);
             expandingItem.setIndicatorIconRes(R.drawable.car_issues);
+            expandingItem.collapse();
         }
 
         public void createSubItem(Primary primary) {
@@ -102,6 +103,14 @@ public class IssuesExpandingAdapter {
 
         public Issue getIssue() {
             return issue;
+        }
+
+        public void toggleExpanded() {
+            expandingItem.toggleExpanded();
+        }
+
+        public boolean isExpanded() {
+            return expandingItem.isExpanded();
         }
     }
 

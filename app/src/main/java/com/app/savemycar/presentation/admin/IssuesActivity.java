@@ -71,10 +71,9 @@ public class IssuesActivity extends AppCompatActivity {
             if (primary != null) {
                 IssuesExpandingAdapter.ExpandingIssueListItem currentIssueItem = issuesExpandingAdapter.getItemByIssue(selectedIssue);
                 currentIssueItem.createSubItem(primary);
-//                issuesExpandingAdapter.createSubItem(primary);
-//                IssuesExpandingAdapter.ExpandingIssueListItem item = issuesExpandingAdapter.getItemByIndex(2);
-//                item.createSubItem(primary);
-//                retrieveIssuesViewModel.retrieveAllIssues();
+                if (!currentIssueItem.isExpanded()) {
+                    currentIssueItem.toggleExpanded();
+                }
             } else {
                 Toast.makeText(this, "Error while adding primary, please try again", Toast.LENGTH_SHORT).show();
             }
