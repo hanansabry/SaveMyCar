@@ -2,24 +2,30 @@ package com.app.savemycar;
 
 import com.app.savemycar.data.AdminRepository;
 import com.app.savemycar.data.CarDataRepository;
+import com.app.savemycar.data.DiagnosisRepository;
 import com.app.savemycar.data.IssuesRepository;
 import com.app.savemycar.data.PrimaryRepository;
 import com.app.savemycar.data.SecondaryRepository;
 import com.app.savemycar.data.WorkshopsRepository;
 import com.app.savemycar.domain.AdminRepositoryImpl;
 import com.app.savemycar.domain.CarDataRepositoryImpl;
+import com.app.savemycar.domain.DiagnosisRepositoryImpl;
 import com.app.savemycar.domain.IssuesRepositoryImpl;
 import com.app.savemycar.domain.PrimaryRepositoryImpl;
 import com.app.savemycar.domain.SecondaryRepositoryImpl;
 import com.app.savemycar.domain.WorkshopsRepositoryImpl;
+import com.app.savemycar.domain.usecase.AddDiagnosisUseCase;
 import com.app.savemycar.domain.usecase.AddIssueUseCase;
 import com.app.savemycar.domain.usecase.AddPrimaryUseCase;
 import com.app.savemycar.domain.usecase.AddSecondaryUseCase;
 import com.app.savemycar.domain.usecase.AddWorkshopUseCase;
 import com.app.savemycar.domain.usecase.LoginUseCase;
 import com.app.savemycar.domain.usecase.RetrieveCarDataUseCase;
+import com.app.savemycar.domain.usecase.RetrieveDiagnosisUseCase;
 import com.app.savemycar.domain.usecase.RetrieveIssuesUseCase;
+import com.app.savemycar.domain.usecase.RetrievePrimaryUseCase;
 import com.app.savemycar.domain.usecase.RetrieveSecondariesUseCase;
+import com.app.savemycar.domain.usecase.RetrieveWorkshopsUseCase;
 
 public class Injection {
 
@@ -77,5 +83,25 @@ public class Injection {
 
     public static RetrieveSecondariesUseCase getRetrieveSecondariesUseCase() {
         return new RetrieveSecondariesUseCase(getSecondaryRepository());
+    }
+
+    public static RetrievePrimaryUseCase getRetrievePrimaryUseCase() {
+        return new RetrievePrimaryUseCase(getPrimaryRepository());
+    }
+
+    public static AddDiagnosisUseCase getAddDiagnosisUseCase() {
+        return new AddDiagnosisUseCase(getDiagnosisRepository());
+    }
+
+    private static DiagnosisRepository getDiagnosisRepository() {
+        return new DiagnosisRepositoryImpl();
+    }
+
+    public static RetrieveDiagnosisUseCase getRetrieveDiagnosisUseCase() {
+        return new RetrieveDiagnosisUseCase(getDiagnosisRepository());
+    }
+
+    public static RetrieveWorkshopsUseCase getRetrieveWorkshopsUseCase() {
+        return new RetrieveWorkshopsUseCase(getWorkshopRepository());
     }
 }

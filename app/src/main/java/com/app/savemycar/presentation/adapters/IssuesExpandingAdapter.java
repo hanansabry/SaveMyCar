@@ -27,28 +27,27 @@ public class IssuesExpandingAdapter {
     }
 
     public void createNewItem(Issue issue) {
-        expandingItem = new ExpandingIssueListItem();
+        expandingItem = new ExpandingIssueListItem(issue);
         expandingItem.setIssueItemTitle(issue.getName());
         if (issue.getPrimaries() != null && issue.getPrimaries().size() > 0) {
             for (String primaryKey : issue.getPrimaries().keySet()) {
                 Primary primary = issue.getPrimaries().get(primaryKey);
-                View subItemView = expandingItem.createPrimarySubItem();
-                expandingItem.setPrimarySubItemTitleTextView(primary.getName());
-                subItemView.setOnClickListener(v -> onPrimarySubItemClicked.setOnPrimarySubItemClicked(primary));
+                primary.setId(primaryKey);
+                expandingItem.createSubItem(primary);
             }
-            expandingItem.getAddSubItemImageButton().setOnClickListener(v -> onAddPrimarySubItemCallback.onAddSubItem(issue));
         }
         expandingIssueListItems.add(expandingItem);
+        expandingItem.getAddSubItemImageButton().setOnClickListener(v -> onAddPrimarySubItemCallback.onAddSubItem(issue, expandingIssueListItems.indexOf(expandingItem)));
     }
 
-    public void createSubItem(Primary primary) {
-        View subItemView = expandingItem.createPrimarySubItem();
-        expandingItem.setPrimarySubItemTitleTextView(primary.getName());
-        subItemView.setOnClickListener(v -> onPrimarySubItemClicked.setOnPrimarySubItemClicked(primary));
-    }
 
-    public ExpandingIssueListItem getItemByIndex(int index) {
-        return expandingIssueListItems.get(index);
+    public ExpandingIssueListItem getItemByIssue(Issue issue) {
+        for (ExpandingIssueListItem expandingIssueListItem : expandingIssueListItems) {
+            if (expandingIssueListItem.getIssue().getId().equals(issue.getId())) {
+                return expandingIssueListItem;
+            }
+        }
+        return null;
     }
 
     public void setOnPrimarySubItemClicked(OnPrimarySubItemClicked onPrimarySubItemClicked) {
@@ -65,14 +64,22 @@ public class IssuesExpandingAdapter {
         private TextView issueItemTitleTextView;
         private TextView primarySubItemTitleTextView;
         private ImageButton addSubItemImageButton;
+        private Issue issue;
         int subItemsCount;
 
-        ExpandingIssueListItem() {
+        ExpandingIssueListItem(Issue issue) {
+            this.issue = issue;
             expandingItem = expandingListIssues.createNewItem(R.layout.expanding_issue_layout);
             issueItemTitleTextView = expandingItem.findViewById(R.id.title);
             addSubItemImageButton = expandingItem.findViewById(R.id.add_primary_btn);
             expandingItem.setIndicatorColorRes(R.color.colorAccent);
             expandingItem.setIndicatorIconRes(R.drawable.car_issues);
+        }
+
+        public void createSubItem(Primary primary) {
+            View subItemView = createPrimarySubItem();
+            setPrimarySubItemTitleTextView(primary.getName());
+            subItemView.setOnClickListener(v -> onPrimarySubItemClicked.setOnPrimarySubItemClicked(issue, primary));
         }
 
         private View createPrimarySubItem() {
@@ -92,13 +99,17 @@ public class IssuesExpandingAdapter {
         public ImageButton getAddSubItemImageButton() {
             return addSubItemImageButton;
         }
+
+        public Issue getIssue() {
+            return issue;
+        }
     }
 
     public interface OnPrimarySubItemClicked {
-        void setOnPrimarySubItemClicked(Primary primary);
+        void setOnPrimarySubItemClicked(Issue issue, Primary primary);
     }
 
     public interface OnAddPrimarySubItemCallback {
-        void onAddSubItem(Issue issue);
+        void onAddSubItem(Issue issue, int index);
     }
 }

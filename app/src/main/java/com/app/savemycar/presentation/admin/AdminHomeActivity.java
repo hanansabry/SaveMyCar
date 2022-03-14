@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.app.savemycar.R;
+import com.app.savemycar.StartActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
@@ -31,5 +33,13 @@ public class AdminHomeActivity extends AppCompatActivity {
     @OnClick(R.id.btnBack)
     public void onBackClicked() {
         onBackPressed();
+    }
+
+    @OnClick(R.id.btnLogout)
+    public void onLogoutClicked() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, StartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

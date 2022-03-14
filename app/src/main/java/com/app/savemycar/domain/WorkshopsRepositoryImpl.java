@@ -5,8 +5,11 @@ import com.app.savemycar.data.WorkshopsRepository;
 import com.app.savemycar.model.Workshop;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,26 +32,23 @@ public class WorkshopsRepositoryImpl implements WorkshopsRepository {
 
     @Override
     public void retrieveWorkshopsByCategory(String categoryName, MutableLiveData<List<Workshop>> workshopsMutableLiveData) {
-        Workshop w1 = new Workshop();
-        w1.setName("workshop 1");
-        w1.setPhone("0546450520");
-        w1.setCategory("cat1");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Workshop> workshops = new ArrayList<>();
+                for (DataSnapshot workshopSnapshot: snapshot.getChildren()) {
+                    Workshop workshop = workshopSnapshot.getValue(Workshop.class);
+                    if (workshop.getCategory().equalsIgnoreCase(categoryName)) {
+                        workshops.add(workshop);
+                    }
+                }
+                workshopsMutableLiveData.setValue(workshops);
+            }
 
-        Workshop w2 = new Workshop();
-        w2.setName("workshop 2");
-        w2.setPhone("0546450520");
-        w2.setCategory("cat1");
-
-        Workshop w3 = new Workshop();
-        w3.setName("workshop 3");
-        w3.setPhone("0546450520");
-        w3.setCategory("cat2");
-
-        List<Workshop> workshops = new ArrayList<>();
-        workshops.add(w1);
-        workshops.add(w2);
-        workshops.add(w3);
-
-        workshopsMutableLiveData.setValue(workshops);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                workshopsMutableLiveData.setValue(null);
+            }
+        });
     }
 }

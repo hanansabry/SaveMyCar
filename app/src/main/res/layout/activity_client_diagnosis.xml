@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Issue Name"
             android:textSize="14sp"
             android:textColor="@color/colorAccent" />
 
@@ -94,7 +93,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Primary Name"
             android:textSize="14sp"
             android:textColor="@color/colorAccent" />
 
@@ -124,7 +122,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Secondary Name"
             android:textSize="14sp"
             android:textColor="@color/colorAccent" />
 
@@ -162,21 +159,49 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:fontFamily="@font/alata"
-        android:text="Available Workshops:"
-        android:textColor="@color/colorPrimary" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/workshopsRecyclerView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        tools:listitem="@layout/workshop_item_layout"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/workshopsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/alata"
+                android:text="Available Workshops:"
+                android:textColor="@color/colorPrimary" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/workshopsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                tools:listitem="@layout/workshop_item_layout"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/noWorkshopsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No available workshops"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+
+    </FrameLayout>
 
 </LinearLayout>
 

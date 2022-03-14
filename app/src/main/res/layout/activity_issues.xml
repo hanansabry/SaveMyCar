@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentTop="true"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
@@ -86,21 +87,41 @@
         android:layout_margin="8dp"
         android:background="@color/text_gray" />
 
-    <TextView
-        android:id="@+id/issuesTitleLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:fontFamily="@font/alata"
-        android:text="Issues:"
-        android:textSize="16sp"
-        android:textColor="@color/white" />
-
-    <com.diegodobelo.expandingview.ExpandingList
-        android:id="@+id/expanding_list_secondaries"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/issuesTitleLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/alata"
+                android:text="Issues:"
+                android:visibility="invisible"
+                android:textSize="16sp"
+                android:textColor="@color/white" />
+
+            <com.diegodobelo.expandingview.ExpandingList
+                android:id="@+id/expanding_list_secondaries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/white"
+            android:layout_gravity="center"
+            android:visibility="visible"/>
+
+    </FrameLayout>
 
 </LinearLayout>
 

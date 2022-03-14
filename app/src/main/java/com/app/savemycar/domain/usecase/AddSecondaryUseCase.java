@@ -13,7 +13,7 @@ public class AddSecondaryUseCase {
         this.secondaryRepository = secondaryRepository;
     }
 
-    public void execute(String primaryId, Secondary secondary, MutableLiveData<Boolean> success) {
-        secondaryRepository.addSecondary(primaryId, secondary, success);
+    public void execute(String issueId, String primaryId, Secondary secondary, MutableLiveData<Boolean> success) {
+        secondaryRepository.addSecondary(issueId, primaryId, secondary, success);
     }
 }

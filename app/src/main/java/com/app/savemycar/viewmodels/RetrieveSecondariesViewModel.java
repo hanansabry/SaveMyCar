@@ -18,8 +18,8 @@ public class RetrieveSecondariesViewModel extends ViewModel {
         retrieveSecondariesUseCase = Injection.getRetrieveSecondariesUseCase();
     }
 
-    public void retrieveSecondaries(String primaryId) {
-        retrieveSecondariesUseCase.execute(primaryId, secondaryListMutableLiveData);
+    public void retrieveSecondaries(String issueId, String primaryId) {
+        retrieveSecondariesUseCase.execute(issueId, primaryId, secondaryListMutableLiveData);
     }
 
     public MutableLiveData<List<Secondary>> getSecondaryListMutableLiveData() {

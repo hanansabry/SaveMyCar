@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.app.savemycar.Constants;
 import com.app.savemycar.R;
@@ -32,9 +33,9 @@ public class CheckIssueActivity extends AppCompatActivity {
     Spinner primarySpinner;
     @BindView(R.id.secondariesSpinner)
     Spinner secondariesSpinner;
-    private String selectedIssueId;
-    private String selectedPrimaryId;
-    private String selectedSecondaryId;
+    private String selectedIssueId, selectedPrimaryId, selectedSecondaryId;
+    private String selectedIssueName, selectedPrimaryName, selectedSecondaryName;
+    private String selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,14 @@ public class CheckIssueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_check_issue);
         ButterKnife.bind(this);
 
+        selectedCategory = getIntent().getStringExtra(Constants.CATEGORY_NAME);
         RetrieveIssuesViewModel retrieveIssuesViewModel = new ViewModelProvider(this).get(RetrieveIssuesViewModel.class);
         retrieveIssuesViewModel.retrieveAllIssues();
         retrieveIssuesViewModel.getIssuesListMutableLiveData().observe(this, this::initiateIssuesSpinner);
     }
 
     private void initiateIssuesSpinner(List<Issue> issues) {
+        selectedIssueId = null;
         ArrayAdapter<String> issuesAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
         List<String> issuesNamesList = new ArrayList<>();
         for (Issue issue : issues) {
@@ -62,6 +65,7 @@ public class CheckIssueActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Issue issue = issues.get(position);
                 selectedIssueId = issue.getId();
+                selectedIssueName = issue.getName();
                 initiatePrimariesSpinner(issue.getPrimaries());
             }
 
@@ -73,57 +77,69 @@ public class CheckIssueActivity extends AppCompatActivity {
     }
 
     private void initiatePrimariesSpinner(HashMap<String, Primary> primaries) {
-        ArrayAdapter<String> primariesAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
-        List<String> primariesNameList = new ArrayList<>();
-        List<String> primariesKeyList = new ArrayList<>();
-        for (String key : primaries.keySet()) {
-            Primary p = primaries.get(key);
-            primariesNameList.add(p.getName());
-            primariesKeyList.add(key);
-            initiateSecondariesSpinner(p.getSecondaries());
+        selectedPrimaryId = null;
+        if (primaries != null && primaries.size() > 0) {
+            ArrayAdapter<String> primariesAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
+            List<String> primariesNameList = new ArrayList<>();
+            List<String> primariesKeyList = new ArrayList<>();
+            for (String key : primaries.keySet()) {
+                Primary p = primaries.get(key);
+                primariesNameList.add(p.getName());
+                primariesKeyList.add(key);
+                initiateSecondariesSpinner(p.getSecondaries());
+            }
+            primariesAdapter.addAll(primariesNameList);
+            primarySpinner.setAdapter(primariesAdapter);
+            primarySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String pKey = primariesKeyList.get(position);
+                    Primary primary = primaries.get(pKey);
+                    selectedPrimaryName = primary.getName();
+                    selectedPrimaryId = pKey;
+                    initiateSecondariesSpinner(primary.getSecondaries());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        } else {
+            primarySpinner.setAdapter(null);
         }
-        primariesAdapter.addAll(primariesNameList);
-        primarySpinner.setAdapter(primariesAdapter);
-        primarySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String pKey = primariesKeyList.get(position);
-                Primary primary = primaries.get(pKey);
-                selectedPrimaryId = primary.getId();
-                initiateSecondariesSpinner(primary.getSecondaries());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     private void initiateSecondariesSpinner(HashMap<String, Secondary> secondaries) {
-        ArrayAdapter<String> secondariesAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
-        List<String> secondariesNameList = new ArrayList<>();
-        List<String> secondariesKeyList = new ArrayList<>();
-        for (String key : secondaries.keySet()) {
-            Secondary s = secondaries.get(key);
-            secondariesNameList.add(s.getName());
-            secondariesKeyList.add(key);
+        selectedSecondaryId = null;
+        if (secondaries != null && secondaries.size() > 0) {
+            ArrayAdapter<String> secondariesAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
+            List<String> secondariesNameList = new ArrayList<>();
+            List<String> secondariesKeyList = new ArrayList<>();
+            for (String key : secondaries.keySet()) {
+                Secondary s = secondaries.get(key);
+                secondariesNameList.add(s.getName());
+                secondariesKeyList.add(key);
+            }
+            secondariesAdapter.addAll(secondariesNameList);
+            secondariesSpinner.setAdapter(secondariesAdapter);
+            secondariesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String sKey = secondariesKeyList.get(position);
+                    Secondary secondary = secondaries.get(sKey);
+                    selectedSecondaryName = secondary.getName();
+                    selectedSecondaryId = sKey;
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        } else {
+            secondariesSpinner.setAdapter(null);
         }
-        secondariesAdapter.addAll(secondariesNameList);
-        secondariesSpinner.setAdapter(secondariesAdapter);
-        secondariesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String sKey = secondariesKeyList.get(position);
-                Secondary secondary = secondaries.get(sKey);
-                selectedSecondaryId = secondary.getId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     @OnClick(R.id.btnBack)
@@ -133,10 +149,18 @@ public class CheckIssueActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnNext)
     public void onNextClicked() {
-        Intent intent = new Intent(this, ClientDiagnosisActivity.class);
-        intent.putExtra(Constants.ISSUE_ID, selectedIssueId);
-        intent.putExtra(Constants.PRIMARY_ID, selectedPrimaryId);
-        intent.putExtra(Constants.SECONDARY_ID, selectedSecondaryId);
-        startActivity(intent);
+        if (selectedIssueId == null || selectedPrimaryId == null || selectedSecondaryId == null) {
+            Toast.makeText(this, "You must select issue, primary and secondary to continue", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(this, ClientDiagnosisActivity.class);
+            intent.putExtra(Constants.ISSUE_ID, selectedIssueId);
+            intent.putExtra(Constants.PRIMARY_ID, selectedPrimaryId);
+            intent.putExtra(Constants.SECONDARY_ID, selectedSecondaryId);
+            intent.putExtra(Constants.ISSUE_NAME, selectedIssueName);
+            intent.putExtra(Constants.PRIMARY_NAME, selectedPrimaryName);
+            intent.putExtra(Constants.SECONDARY_NAME, selectedSecondaryName);
+            intent.putExtra(Constants.CATEGORY_NAME, selectedCategory);
+            startActivity(intent);
+        }
     }
 }

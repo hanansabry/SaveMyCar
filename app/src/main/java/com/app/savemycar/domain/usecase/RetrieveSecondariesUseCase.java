@@ -15,7 +15,7 @@ public class RetrieveSecondariesUseCase {
         this.secondaryRepository = secondaryRepository;
     }
 
-    public void execute(String primaryId, MutableLiveData<List<Secondary>> secondaryListMutableLiveData) {
-        secondaryRepository.retrieveAllSecondaries(primaryId, secondaryListMutableLiveData);
+    public void execute(String issueId, String primaryId, MutableLiveData<List<Secondary>> secondaryListMutableLiveData) {
+        secondaryRepository.retrieveAllSecondaries(issueId, primaryId, secondaryListMutableLiveData);
     }
 }

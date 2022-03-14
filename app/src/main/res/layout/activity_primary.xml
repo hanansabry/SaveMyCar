@@ -65,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Issue Name"
             android:textSize="14sp"
             android:textColor="@color/white" />
 
@@ -95,7 +94,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Primary Name"
             android:textSize="14sp"
             android:textColor="@color/white" />
 
@@ -152,22 +150,41 @@
         android:layout_margin="8dp"
         android:background="@color/text_gray" />
 
-    <TextView
-        android:id="@+id/secondariesLabelTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:fontFamily="@font/alata"
-        android:text="Secondaries:"
-        android:textColor="@color/yellow" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/secondariesRecyclerView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        tools:listitem="@layout/secondary_item_layout"/>
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/secondariesLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/alata"
+                android:text="Secondaries:"
+                android:visibility="invisible"
+                android:textColor="@color/yellow" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/secondariesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                tools:listitem="@layout/secondary_item_layout"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/white"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--        android:id="@+id/btnAddSecondaryFab"-->
 <!--        android:layout_width="wrap_content"-->

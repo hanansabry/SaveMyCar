@@ -11,4 +11,9 @@ public class Constants {
     public static final String CATEGORIES_NODE = "categories";
     public static final String ISSUES_NODE = "issues";
     public static final String PRIMARY_NODE = "primaries";
+    public static final String ISSUE_NAME = "issue_name";
+    public static final String SECONDARY_NODE = "secondaries";
+    public static final String DIAGNOSIS = "diagnosis";
+    public static final String PRIMARY_NAME = "primary_name";
+    public static final String SECONDARY_NAME = "secondary_name";
 }

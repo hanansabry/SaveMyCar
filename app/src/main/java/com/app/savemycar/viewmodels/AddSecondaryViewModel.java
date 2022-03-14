@@ -16,8 +16,8 @@ public class AddSecondaryViewModel extends ViewModel {
         addSecondaryUseCase = Injection.getAddSecondaryUseCase();
     }
 
-    public void addNewSecondary(String primaryId, Secondary secondary) {
-        addSecondaryUseCase.execute(primaryId, secondary, success);
+    public void addNewSecondary(String issueId, String primaryId, Secondary secondary) {
+        addSecondaryUseCase.execute(issueId, primaryId, secondary, success);
     }
 
     public MutableLiveData<Boolean> getSuccess() {

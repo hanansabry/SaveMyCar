@@ -6,8 +6,11 @@ import com.app.savemycar.model.Primary;
 import com.app.savemycar.model.Secondary;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +35,21 @@ public class PrimaryRepositoryImpl implements PrimaryRepository {
                 } else {
                     primaryMutableLiveData.setValue(null);
                 }
+            }
+        });
+    }
+
+    public void retrievePrimaryByIds(String issueId, String primaryId, MutableLiveData<Primary> primaryMutableLiveData) {
+        issuesReference.child(issueId).child(Constants.PRIMARY_NODE).child(primaryId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Primary primary = snapshot.getValue(Primary.class);
+                primaryMutableLiveData.setValue(primary);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                primaryMutableLiveData.setValue(null);
             }
         });
     }

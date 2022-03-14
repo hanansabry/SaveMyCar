@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Issue Name"
             android:textSize="14sp"
             android:textColor="@color/white" />
 
@@ -94,7 +93,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Primary Name"
             android:textSize="14sp"
             android:textColor="@color/white" />
 
@@ -124,7 +122,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/alata"
-            android:text="My Secondary Name"
             android:textSize="14sp"
             android:textColor="@color/white" />
 
@@ -145,7 +142,7 @@
             android:textColor="@color/white" />
 
         <EditText
-            android:id="@+id/editTextSecondaryName"
+            android:id="@+id/editTextDiagnosisDetails"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginStart="16dp"
