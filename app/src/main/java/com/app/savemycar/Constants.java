@@ -16,4 +16,6 @@ public class Constants {
     public static final String DIAGNOSIS = "diagnosis";
     public static final String PRIMARY_NAME = "primary_name";
     public static final String SECONDARY_NAME = "secondary_name";
+    public static final String TYPES_NODE = "types";
+    public static final String MODELS_NODE = "models";
 }

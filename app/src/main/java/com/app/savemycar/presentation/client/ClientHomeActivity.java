@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.app.savemycar.Constants;
 import com.app.savemycar.R;
@@ -82,7 +83,11 @@ public class ClientHomeActivity extends AppCompatActivity {
     @OnClick(R.id.btnNext)
     public void onNextClicked() {
         Intent intent = new Intent(this, CheckIssueActivity.class);
-        intent.putExtra(Constants.CATEGORY_NAME, selectedCategory);
-        startActivity(intent);
+        if (selectedCategory == null) {
+            Toast.makeText(this, "You must select category", Toast.LENGTH_SHORT).show();
+        } else {
+            intent.putExtra(Constants.CATEGORY_NAME, selectedCategory);
+            startActivity(intent);
+        }
     }
 }

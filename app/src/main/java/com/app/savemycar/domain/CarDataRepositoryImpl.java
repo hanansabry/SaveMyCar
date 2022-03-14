@@ -18,20 +18,42 @@ public class CarDataRepositoryImpl implements CarDataRepository {
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     public void retrieveModels(MutableLiveData<List<String>> modelsMutableLiveData) {
-        List<String> models = new ArrayList<>();
-        models.add("model1");
-        models.add("model2");
-        models.add("model3");
-        modelsMutableLiveData.setValue(models);
+        DatabaseReference modelsReference = database.getReference(Constants.MODELS_NODE);
+        modelsReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> models = new ArrayList<>();
+                for (DataSnapshot modelSnapshot : snapshot.getChildren()) {
+                    models.add(modelSnapshot.getValue(String.class));
+                }
+                modelsMutableLiveData.setValue(models);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                modelsMutableLiveData.setValue(null);
+            }
+        });
     }
 
     @Override
     public void retrieveTypes(MutableLiveData<List<String>> typesMutableLiveData) {
-        List<String> types = new ArrayList<>();
-        types.add("type1");
-        types.add("type2");
-        types.add("type3");
-        typesMutableLiveData.setValue(types);
+        DatabaseReference typesReference = database.getReference(Constants.TYPES_NODE);
+        typesReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> types = new ArrayList<>();
+                for (DataSnapshot typeSnapshot : snapshot.getChildren()) {
+                    types.add(typeSnapshot.getValue(String.class));
+                }
+                typesMutableLiveData.setValue(types);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                typesMutableLiveData.setValue(null);
+            }
+        });
     }
 
     @Override
@@ -52,10 +74,5 @@ public class CarDataRepositoryImpl implements CarDataRepository {
                 categoriesMutableLiveData.setValue(null);
             }
         });
-//        List<String> categories = new ArrayList<>();
-//        categories.add("category1");
-//        categories.add("category2");
-//        categories.add("category3");
-//        categoriesMutableLiveData.setValue(categories);
     }
 }
