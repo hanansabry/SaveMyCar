@@ -52,7 +52,7 @@
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/brandsSpinner"
+            android:id="@+id/categoriesSpinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="8dp"
@@ -73,7 +73,6 @@
         android:background="@drawable/corner_light_gray"
         android:gravity="bottom"
         android:hint="Workshop Name"
-        android:inputType="text"
         android:padding="16dp"
         android:textSize="14sp"
         android:textColor="@color/colorPrimary"

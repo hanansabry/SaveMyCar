@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="2">
+        android:weightSum="2.5">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/issues_cardview"

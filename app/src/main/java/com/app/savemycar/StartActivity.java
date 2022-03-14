@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.app.savemycar.presentation.admin.AdminHomeActivity;
 import com.app.savemycar.presentation.admin.LoginActivity;
 import com.app.savemycar.presentation.client.ClientHomeActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -27,6 +28,10 @@ public class StartActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnAdmin)
     public void onAdminClicked() {
-        startActivity(new Intent(this, LoginActivity.class));
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {
+            startActivity(new Intent(this, AdminHomeActivity.class));
+        }
     }
 }

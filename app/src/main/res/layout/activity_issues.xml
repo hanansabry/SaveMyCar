@@ -100,7 +100,7 @@
         android:id="@+id/expanding_list_secondaries"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"/>
 
 </LinearLayout>
 

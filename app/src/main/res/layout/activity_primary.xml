@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
         android:weightSum="3">
         <TextView
             android:id="@+id/issueNameLabelTextView"
@@ -150,6 +151,15 @@
         android:layout_height="1dp"
         android:layout_margin="8dp"
         android:background="@color/text_gray" />
+
+    <TextView
+        android:id="@+id/secondariesLabelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/alata"
+        android:text="Secondaries:"
+        android:textColor="@color/yellow" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/secondariesRecyclerView"
